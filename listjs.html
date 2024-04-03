@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create a List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #todo-list {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  input[type="text"] {
+    width: calc(100% - 65px);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .todo-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-item input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .todo-item button {
+    margin-left: auto;
+    background-color: #f44336;
+  }
+  
+  .todo-item button:hover {
+    background-color: #d32f2f;
+  }
+</style>
+</head>
+<body>
+
+<div id="todo-list">
+  <h1>Create a List</h1>
+  <input type="text" id="todo-input" placeholder="Enter the task">
+  <button onclick="addItem()">Add</button>
+  <ul id="items"></ul>
+</div>
+
+<script>
+  function addItem() {
+    var input=document.getElementById("todo-input");
+    var text=input.value;
+    if (text.trim()==="") {
+      alert("Please enter a task.");
+      return;
+    }
+    var newItem=document.createElement("li");
+    newItem.className="todo-item";
+    newItem.innerHTML= `
+      <input type="checkbox">
+      <span>${text}</span>
+      <button onclick="removeItem(this)">Remove</button>
+    `;
+    document.getElementById("items").appendChild(newItem);
+    input.value= "";
+  }
+
+  function removeItem(item) {
+    item.parentElement.remove();
+  }
+</script>
+
+</body>
+</html>
